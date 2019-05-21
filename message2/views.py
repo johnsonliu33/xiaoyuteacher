@@ -1,7 +1,6 @@
 # 添加message接口
 import sys
 from django.http import JsonResponse
-from jsonschema import ValidationError
 from message2.models import Message
 
 def add_message(request):
@@ -9,9 +8,9 @@ def add_message(request):
     name = request.POST.get('name', '')
     content = request.POST.get('content', '')
     status = request.POST.get('status', '')
-    auther = request.POST.get('auther', '')
+    author = request.POST.get('author', '')
 
-    if mid == '' or name == '' or content == '' or auther == '':
+    if mid == '' or name == '' or content == '' or author == '':
         return JsonResponse({'status': 10021, 'message': 'parameter error'})
 
     result = Message.objects.filter(id=mid)
@@ -24,7 +23,7 @@ def add_message(request):
         return JsonResponse({'status': 10023,
                              'message': 'event name already exists'})
     try:
-        Message.objects.create(id=mid, name=name, content=content, auther=auther)
+        Message.objects.create(id=mid, name=name, content=content, auther=author)
     except:
         return JsonResponse({'status': 10024, 'message': "参数格式有问题"})
 
