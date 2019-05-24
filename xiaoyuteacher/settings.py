@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'message2'
 ]
 
 MIDDLEWARE = [
@@ -77,12 +78,19 @@ WSGI_APPLICATION = 'xiaoyuteacher.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER':'',
-        'PASSWORD':'',
-        'POST':'127.0.0.1'
+        'NAME': 'xiaoyuteacher',
+        'USER':'root',
+        'PASSWORD':'1qaz2wsx',
+        'HOST':'127.0.0.1',
+        'PORT': 3306
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
