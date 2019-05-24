@@ -1,7 +1,7 @@
 # 添加message接口
 import sys
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-#from message2.models import Message
+from message2.models import Message
 from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -66,5 +66,6 @@ def login_action(request):
 @login_required
 def event_manage(request):
     #username = request.COOKIES.get('user', '')  # 读取浏览器 cookie
+    message_list = Message.objects.all()
     username = request.session.get('user', '')
     return render(request, "event_manage.html", {"user": username})
