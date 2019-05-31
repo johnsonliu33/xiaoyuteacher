@@ -1,0 +1,36 @@
+<!-- 导航栏 -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+   <div class="navbar-header">
+<a class="navbar-brand" href="/event_manage/">Guest Manage System</a> </div>
+<div id="navbar" class="collapse navbar-collapse"> <ul class="nav navbar-nav">
+88
+<li><a href="/event_manage/">留言</a></li>
+<li class="active"><a href="#">访客</a></li> </ul>
+<ul class="nav navbar-nav navbar-right"> <li><a href="#">{{user}}</a></li> <li><a href="/logout/">退出</a></li>
+</ul> </div>
+     </div>
+   </nav>
+<!-- 嘉宾列表 -->
+<div class="row" style="padding-top: 80px;">
+     <div class="col-md-6">
+       <table class="table table-striped">
+<thead> <tr>
+<th>id</th><th>姓名</th><th>性别</th><th>状态</th><th>签到</th>
+<th>发布会</th> </tr>
+        </thead>
+        <tbody>
+{% for guest in guests %} <tr>
+             <td>{{ guest.id }}</td>
+             <td>{{ guest.name }}</td>
+             <td>{{ guest.gender }}</td>
+             <td>{{ guest.status }}</td>
+            <td>{{ guest.status }}</td>
+            </tr>
+         {% endfor %}
+ </tbody>
+       </table>
+     </div>
+   </div>
+  </body>
+</html>
