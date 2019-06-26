@@ -1,0 +1,73 @@
+<html lang="zh-CN">
+  <head>
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %} <title>Device Manage</title>
+</head>
+<body role="document">
+<!-- 导航栏 -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+     <div class="container">
+       <div class="navbar-header">
+            <a class="navbar-brand" href="/device_manage/">设备管理系统</a>
+       </div>
+        <div id="navbar" class="collapse navbar-collapse"> <ul class="nav navbar-nav">
+        <li class="active"><a href="#">设备信息页</a></li>
+        <li><a href="/guest_manage/">人员列表页</a></li> </ul>
+        <ul class="nav navbar-nav navbar-right"> <li><a href="#">{{user}}</a></li> <li><a href="/logout/">退出</a></li>
+</ul> </div>
+     </div>
+   </nav>
+
+
+<div class="page-header" style="padding-top: 60px;">
+    <div id="navbar" class="navbar-collapse collapse">
+        <form class="navbar-form" method="get" action="/search_name/">
+            <div class="form-group">
+                <input name="device_model" type="text" placeholder="根据设备名称搜索" class="form-control">
+                <input name="device_system" type="text" placeholder="根据系统搜索" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">搜索</button>
+        </form>
+ </div>
+</div>
+
+<!-- 设备列表 -->
+<div class="row" style="padding-top: 80px;">
+     <div class="col-md-6">
+       <table class="table table-striped">
+<thead> <tr>
+<th>id</th><th>设备名称</th><th>手机系统</th><th>借用人</th><th>前借用人</th><th>借用时间</th><th>借用状态</th><th>借用</th> </tr>
+        </thead>
+        <tbody>
+{% for device in devices %} <tr>
+             <td>{{ device.device_id }}</td>
+             <td>{{ device.device_model }}</td>
+             <td>{{ device.device_system }}</td>
+             <td>{{ device.user }}</td>
+             <td>{{ device.pre_user }}</td>
+             <td>{{ device.time }}</td>
+             <td>{{ device.status }}</td>
+            <td><a href="/device_index/{{device_id}}/" target="{{device_id}}_blank">borrow</a></td>
+            </tr>
+         {% endfor %}
+        </tbody>
+       </table>
+     </div>
+   </div>
+
+<!-- 列表分页器 -->
+<div class="pagination">
+  <span class="step-links">
+{% if devices.has_previous %}
+<a href="?page={{ devices.previous_page_number }}">previous</a>
+       {% endif %}
+        <span class="current">
+Page {{ devices.number }} of {{ devices.paginator.num_pages }}. </span>
+{% if devices.has_next %}
+<a href="?page={{ devices.next_page_number }}">next</a>
+       {% endif %}
+     </span>
+</div>
+  </body>
+</html>
